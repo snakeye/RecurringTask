@@ -1,0 +1,15 @@
+{
+  "name": "RecurringTask",
+  "version": "1.0.0",
+  "keywords": "task, multitasking, scheduling, timing, arduino",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snakeye/RecurringTask.git"
+  },
+  "authors": {
+    "name": "Andrey Ovcharov",
+    "email": "andrew.ovcharov@gmail.com"
+  },
+  "frameworks": "arduino",
+  "platforms": "*"
+}
