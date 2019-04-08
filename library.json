@@ -2,6 +2,7 @@
   "name": "RecurringTask",
   "version": "1.0.0",
   "keywords": "task, multitasking, scheduling, timing, arduino",
+  "description": "Simple wrapper library for repeating tasks with different periods",
   "repository": {
     "type": "git",
     "url": "https://github.com/snakeye/RecurringTask.git"
