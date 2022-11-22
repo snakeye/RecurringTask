@@ -1,6 +1,6 @@
 {
   "name": "RecurringTask",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": "task, multitasking, scheduling, timing, arduino",
   "description": "Simple wrapper library for repeating tasks with different periods",
   "repository": {
