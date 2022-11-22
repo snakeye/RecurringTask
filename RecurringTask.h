@@ -4,9 +4,9 @@ namespace RecurringTask
 {
 
 template <typename F>
-void every(int iterations, const F &lambda)
+void every(unsigned long iterations, const F &lambda)
 {
-    static int iterationsCount = 0;
+    static unsigned long iterationsCount = 0;
 
     iterationsCount++;
     if (iterationsCount >= iterations)
