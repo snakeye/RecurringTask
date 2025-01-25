@@ -7,7 +7,7 @@ The RecurringTask library provides an easy way to schedule recurring tasks in Ar
 
 This library is designed to be lightweight, flexible, and easy to integrate into your Arduino and PlatformIO projects.
 
-When you make something with Arduino the following snipped should be very familiar to you.
+When you make something with Arduino the following snippet should be very familiar to you. We don't want to lock the loop for the whole second, but we do not need to print the message with every call.
 
 ```cpp
 void loop() {
@@ -21,18 +21,19 @@ void loop() {
 }
 ```
 
-It's widely used when you want to execute some task with period different from the main loop.
-
-After writing the same code multiple times I extracted small but very semanticaly efficient library called *RecurringTask*. The idea and usage is very simple - you just define the period of execution in milliseconds or number of loop iterations and the library does the rest:
+After repeatedly writing the same code, I decided to extract it into a small yet highly efficient library called *RecurringTask*. The concept and usage are straightforward — simply define the execution period in milliseconds or the number of loop iterations, and the library takes care of the rest.
 
 ```cpp
 #include <RecurringTask.h>
 
+void printEverySecond() 
+{
+  Serial.println("This line should be printed every second");
+}
+
 void loop()
 {
-    RecurringTask::interval(1000, []() {
-        Serial.println("This line should be printed every second");
-    });
+    RecurringTask::interval(1000, printEverySecond);
 }
 ```
 
@@ -41,22 +42,22 @@ void loop()
 ### RecurringTask::every()
 
 ```cpp
-template <typename F>
-void every(unsigned long iterations, const F &lambda);
+template <typename Callable>
+unsigned long every(unsigned long iterations, const Callable &task)
 ```
 
 * iterations: The number of iterations before the task is executed again.
-* lambda: A lambda function or any callable object to execute when the specified number of iterations is reached.
+* callable: A lambda function or any callable object to execute when the specified number of iterations is reached.
 
 ### RecurringTask::interval()
 
 ```cpp
-template <typename F>
-void interval(unsigned long milliseconds, const F &lambda);
+template <typename Callable>
+void interval(unsigned long milliseconds, const Callable &task)
 ```
 
 * milliseconds: The time interval in milliseconds after which the task is executed.
-* lambda: A lambda function or any callable object to execute when the time interval has passed.
+* callable: A lambda function or any callable object to execute when the time interval has passed.
 
 ## Notes
 
