@@ -3,30 +3,32 @@
 namespace RecurringTask
 {
 
-template <typename F>
-void every(unsigned long iterations, const F &lambda)
-{
-    static unsigned long iterationsCount = 0;
-
-    iterationsCount++;
-    if (iterationsCount >= iterations)
+    template <typename Callable>
+    unsigned long every(unsigned long iterations, const Callable &task)
     {
-        lambda();
-        iterationsCount = 0;
+        static unsigned long iterationsCount = 0;
+
+        iterationsCount++;
+        if (iterationsCount >= iterations)
+        {
+            task();
+            iterationsCount = 0;
+        }
+
+        return iterationsCount;
     }
-}
 
-template <typename F>
-void interval(unsigned long milliseconds, const F &lambda)
-{
-    static unsigned long lastExecution = 0;
-
-    unsigned long now = millis();
-    if (now > (lastExecution + milliseconds))
+    template <typename Callable>
+    void interval(unsigned long milliseconds, const Callable &task)
     {
-        lambda();
-        lastExecution = now;
+        static unsigned long lastExecution = 0;
+
+        unsigned long now = millis();
+        if ((now - lastExecution) >= milliseconds)
+        {
+            task();
+            lastExecution = now;
+        }
     }
-}
 
 } // namespace RecurringTask
